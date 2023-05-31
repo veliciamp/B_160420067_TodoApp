@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_create_todo.*
 class CreateTodoFragment : Fragment() {
     private lateinit var viewModel: DetailTodoViewModel
 
+//    dipanggil sesaat setelah viewnya berhasil di load
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel =
@@ -23,15 +24,14 @@ class CreateTodoFragment : Fragment() {
 
         btnAdd.setOnClickListener {
             var todo = Todo(txtTitle.text.toString(), txtNotes.text.toString())
-            val list = listOf(todo)
-            viewModel.addTodo(list)
-            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
+            viewModel.addTodo(todo)
+            Toast.makeText(view.context, "Data added", Toast.LENGTH_SHORT).show()
             Navigation.findNavController(it).popBackStack()
 
         }
     }
 
-
+//load layout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
