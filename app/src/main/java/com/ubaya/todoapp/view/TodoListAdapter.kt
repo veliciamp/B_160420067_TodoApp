@@ -3,6 +3,7 @@ package com.ubaya.todoapp.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.ubaya.todoapp.R
 import com.ubaya.todoapp.model.Todo
@@ -28,6 +29,10 @@ class TodoListAdapter(val todos:ArrayList<Todo>,val adapterOnClick : (Todo) -> U
             if(isChecked){
                 adapterOnClick(todos[position])
             }
+        }
+        holder.view.imgEdit.setOnClickListener(){
+            val action = TodoListFragmentDirections.actionEditTodoFragment(todos[position].uuid)
+            Navigation.findNavController(it).navigate(action)
         }
 
 

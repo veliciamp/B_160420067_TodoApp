@@ -18,5 +18,16 @@
         <action
             android:id="@+id/actionCreateTodo"
             app:destination="@id/createTodoFragment" />
+        <action
+            android:id="@+id/actionEditTodoFragment"
+            app:destination="@id/editTodoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTodoFragment"
+        android:name="com.ubaya.todoapp.view.EditTodoFragment"
+        android:label="EditTodoFragment" >
+        <argument
+            android:name="uuid"
+            app:argType="integer" />
     </fragment>
 </navigation>
