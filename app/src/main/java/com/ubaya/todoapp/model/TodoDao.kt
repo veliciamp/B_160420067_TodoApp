@@ -8,8 +8,8 @@ interface TodoDao {
     fun insertAll(vararg todo:Todo)
 //    suspend fun insertAll(vararg todo:Todo)
 
-//    @Query("SELECT * FROM todo WHERE is_done=0 ORDER BY priority DESC")
-//    fun selectTodo(): List<Todo>
+    @Query("SELECT * FROM todo WHERE is_done=0 ORDER BY priority DESC")
+    fun selectBeforeIsDone(): List<Todo>
 
     @Query("SELECT * FROM todo ORDER BY priority DESC")
     fun selectAllTodo(): List<Todo>
@@ -26,8 +26,8 @@ interface TodoDao {
     @Query("UPDATE todo SET title=:title, notes=:notes, priority=:priority WHERE uuid = :id")
              fun update(title:String, notes:String, priority:Int, id:Int)
 
-//    @Query("UPDATE todo SET is_done=:is_done WHERE uuid = :id")
-//    fun check(is_done:Int, id:Int)
+    @Query("UPDATE todo SET is_done=1 WHERE uuid = :id")
+    fun check(id:Int)
 
 //    @Update
 //    fun updateTodo(title:String, notes:String, priority:Int, id:Int)
