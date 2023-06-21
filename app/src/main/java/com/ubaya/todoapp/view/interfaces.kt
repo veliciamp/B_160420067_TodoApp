@@ -13,3 +13,8 @@ interface TodoItemLayoutInterface{
 
     fun onTodoEditClick(v: View)
 }
+
+interface TodoCreateLayoutInterface{
+    fun onRadiolick(v:View, priority:Int, obj:Todo)
+    fun onButtonAddClick(v:View)
+}

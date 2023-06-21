@@ -1,116 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.CreateTodoFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="todo"
+            type="com.ubaya.todoapp.model.Todo" />
+        <variable
+            name="radioListener"
+            type="com.ubaya.todoapp.view.TodoCreateLayoutInterface" />
+        <variable
+            name="buttonListener"
+            type="com.ubaya.todoapp.view.TodoCreateLayoutInterface" />
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".view.CreateTodoFragment">
 
-        <TextView
-            android:id="@+id/txtJudulTodo"
-            style="@style/Widget.MaterialComponents.TimePicker.Display"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:text="New ToDo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtJudulTodo">
+            <TextView
+                android:id="@+id/txtJudulTodo"
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtTitle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Enter ToDo Title" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="New ToDo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtNotes"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Enter Notes" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtJudulTodo">
 
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="ADD TODO"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupPriority" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtTitle"
+                    android:text="@={todo.title}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter ToDo Title" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <RadioGroup
-            android:id="@+id/radioGroupPriority"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
 
-            <RadioButton
-                android:id="@+id/radioHigh"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="HIGH PRIORITY"
-                android:checked="true"
-                android:tag="3"/>
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
-            <RadioButton
-                android:id="@+id/radioMedium"
-                android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNotes"
+                    android:text="@={todo.notes}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Notes" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MEDIUM PRIORITY"
-                android:tag="2"/>
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="ADD TODO"
+                android:onClick="@{buttonListener::onButtonAddClick}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupPriority" />
 
-            <RadioButton
-                android:id="@+id/radioLow"
-                android:layout_width="match_parent"
+            <RadioGroup
+                android:id="@+id/radioGroupPriority"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                <RadioButton
+                    android:id="@+id/radioHigh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="HIGH PRIORITY"
+                    android:checked="@{todo.priority==3?true:false}"
+                    android:onClick="@{(view)->radioListener.onRadiolick(view,3,todo)}"
+                    android:tag="3" />
+
+                <RadioButton
+                    android:id="@+id/radioMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="MEDIUM PRIORITY"
+                    android:checked="@{todo.priority==2?true:false}"
+                    android:onClick="@{(view)->radioListener.onRadiolick(view,2,todo)}"
+                    android:tag="2" />
+
+                <RadioButton
+                    android:id="@+id/radioLow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="LOW PRIORITY"
+                    android:checked="@{todo.priority==1?true:false}"
+                    android:onClick="@{(view)->radioListener.onRadiolick(view,1,todo)}"
+                    android:tag="1" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LOW PRIORITY"
-                android:tag="1"/>
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="PRIORITY"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+                android:layout_marginTop="32dp"
+                android:text="PRIORITY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>
